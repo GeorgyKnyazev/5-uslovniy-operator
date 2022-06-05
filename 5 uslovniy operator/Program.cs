@@ -6,21 +6,24 @@ namespace _5_uslovniy_operator
     {
         static void Main(string[] args)
         {
-            float usdFromTheUser, rubFromTheUser, eurFromTheUser;
+            float usdUserBalance;
+            float rubUserBalance;
+            float eurUserBalance;
             float usdConvertToEur = 1.1f;
             float usdConvertToRub = 64;
             float eurConvertToUsd = 0.9f;
             float eurConvertToRub = 56;
-            float rubConvertToUsd = 58;
-            float rubConvertToEur = 66;
-            bool continueOperation = true; 
+            float rubConvertToUsd = 0.015151f;
+            float rubConvertToEur = 0.017241f;
+            bool continueOperation = true;
+            float theAmountOfMoneyToExchange;
 
             Console.Write("Укажите количество у вас долларов: ");
-            usdFromTheUser = Convert.ToSingle(Console.ReadLine());
+            usdUserBalance = Convert.ToSingle(Console.ReadLine());
             Console.Write("Укажите количество у вас рублей: ");
-            rubFromTheUser = Convert.ToSingle(Console.ReadLine());
+            rubUserBalance = Convert.ToSingle(Console.ReadLine());
             Console.Write("Укажите количество у вас евро: ");
-            eurFromTheUser = Convert.ToSingle(Console.ReadLine());
+            eurUserBalance = Convert.ToSingle(Console.ReadLine());
 
             while (continueOperation)
             {
@@ -31,20 +34,26 @@ namespace _5_uslovniy_operator
                 Console.WriteLine("4 - обменять евро на рубли");
                 Console.WriteLine("5 - обменять рубли на доллары");
                 Console.WriteLine("6 - обменять рубли на евро");
+                Console.WriteLine("0 - выход");
 
                 Console.Write("Введите тип операции: ");
                 string selectedExchangeOperation = Console.ReadLine();
-                Console.Write("Введите сумму которую хотите обменять: ");
-                float theAmountOfMoneyToExchange = Convert.ToSingle(Console.ReadLine());
-
+               
                 switch (selectedExchangeOperation)
                 {
+                    
+                    case "0":
+                        continueOperation = false;
+                        break;
+                        
                     case "1":
+                        Console.Write("Введите сумму которую хотите обменять: ");
+                        theAmountOfMoneyToExchange = Convert.ToSingle(Console.ReadLine());
                         Console.WriteLine($"Вы хотите обменять {theAmountOfMoneyToExchange} долларов на евро");
-                        if (usdFromTheUser >= theAmountOfMoneyToExchange)
+                        if (usdUserBalance >= theAmountOfMoneyToExchange)
                         {
-                            usdFromTheUser -= theAmountOfMoneyToExchange;
-                            eurFromTheUser += theAmountOfMoneyToExchange * usdConvertToEur;
+                            usdUserBalance -= theAmountOfMoneyToExchange;
+                            eurUserBalance += theAmountOfMoneyToExchange * usdConvertToEur;
                         }
                         else
                         {
@@ -53,11 +62,13 @@ namespace _5_uslovniy_operator
                         break;
 
                     case "2":
+                        Console.Write("Введите сумму которую хотите обменять: ");
+                        theAmountOfMoneyToExchange = Convert.ToSingle(Console.ReadLine());
                         Console.WriteLine($"Вы хотите обменять {theAmountOfMoneyToExchange} долларов на рубли");
-                        if (usdFromTheUser >= theAmountOfMoneyToExchange)
+                        if (usdUserBalance >= theAmountOfMoneyToExchange)
                         {
-                            usdFromTheUser -= theAmountOfMoneyToExchange;
-                            rubFromTheUser += theAmountOfMoneyToExchange * usdConvertToRub;
+                            usdUserBalance -= theAmountOfMoneyToExchange;
+                            rubUserBalance += theAmountOfMoneyToExchange * usdConvertToRub;
                         }
                         else
                         {
@@ -66,11 +77,13 @@ namespace _5_uslovniy_operator
                         break;
 
                     case "3":
+                        Console.Write("Введите сумму которую хотите обменять: ");
+                        theAmountOfMoneyToExchange = Convert.ToSingle(Console.ReadLine());
                         Console.WriteLine($"Вы хотите обменять {theAmountOfMoneyToExchange} евро на доллары");
-                        if (eurFromTheUser >= theAmountOfMoneyToExchange)
+                        if (eurUserBalance >= theAmountOfMoneyToExchange)
                         {
-                            eurFromTheUser -= theAmountOfMoneyToExchange;
-                            usdFromTheUser += theAmountOfMoneyToExchange * eurConvertToUsd;
+                            eurUserBalance -= theAmountOfMoneyToExchange;
+                            usdUserBalance += theAmountOfMoneyToExchange * eurConvertToUsd;
                         }
                         else
                         {
@@ -78,11 +91,13 @@ namespace _5_uslovniy_operator
                         }
                         break;
                     case "4":
+                        Console.Write("Введите сумму которую хотите обменять: ");
+                        theAmountOfMoneyToExchange = Convert.ToSingle(Console.ReadLine());
                         Console.WriteLine($"Вы хотите обменять {theAmountOfMoneyToExchange} евро на рубли");
-                        if (eurFromTheUser >= theAmountOfMoneyToExchange)
+                        if (eurUserBalance >= theAmountOfMoneyToExchange)
                         {
-                            eurFromTheUser -= theAmountOfMoneyToExchange;
-                            rubFromTheUser += theAmountOfMoneyToExchange * eurConvertToRub;
+                            eurUserBalance -= theAmountOfMoneyToExchange;
+                            rubUserBalance += theAmountOfMoneyToExchange * eurConvertToRub;
                         }
                         else
                         {
@@ -91,11 +106,13 @@ namespace _5_uslovniy_operator
                         break;
 
                     case "5":
+                        Console.Write("Введите сумму которую хотите обменять: ");
+                        theAmountOfMoneyToExchange = Convert.ToSingle(Console.ReadLine());
                         Console.WriteLine($"Вы хотите обменять {theAmountOfMoneyToExchange} рублей на доллары");
-                        if (rubFromTheUser >= theAmountOfMoneyToExchange)
+                        if (rubUserBalance >= theAmountOfMoneyToExchange)
                         {
-                            rubFromTheUser -= theAmountOfMoneyToExchange;
-                            usdFromTheUser += theAmountOfMoneyToExchange / rubConvertToUsd;
+                            rubUserBalance -= theAmountOfMoneyToExchange;
+                            usdUserBalance += theAmountOfMoneyToExchange * rubConvertToUsd;
                         }
                         else
                         {
@@ -104,11 +121,13 @@ namespace _5_uslovniy_operator
                         break;
 
                     case "6":
+                        Console.Write("Введите сумму которую хотите обменять: ");
+                        theAmountOfMoneyToExchange = Convert.ToSingle(Console.ReadLine());
                         Console.WriteLine($"Вы хотите обменять {theAmountOfMoneyToExchange} рублей на евро");
-                        if (rubFromTheUser >= theAmountOfMoneyToExchange)
+                        if (rubUserBalance >= theAmountOfMoneyToExchange)
                         {
-                            rubFromTheUser -= theAmountOfMoneyToExchange;
-                            eurFromTheUser += theAmountOfMoneyToExchange / rubConvertToEur;
+                            rubUserBalance -= theAmountOfMoneyToExchange;
+                            eurUserBalance += theAmountOfMoneyToExchange * rubConvertToEur;
                         }
                         else
                         {
@@ -117,9 +136,7 @@ namespace _5_uslovniy_operator
                         break;
                 }
 
-                Console.WriteLine($"После обмена у вас: \n {usdFromTheUser} долларов\n {eurFromTheUser} евро\n {rubFromTheUser} рублей");
-                Console.Write("Повторить обмен?(True или false): ");
-                continueOperation = Convert.ToBoolean(Console.ReadLine());
+                Console.WriteLine($"После обмена у вас: \n {usdUserBalance} долларов\n {eurUserBalance} евро\n {rubUserBalance} рублей");
             }
             
         }
